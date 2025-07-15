@@ -3,54 +3,53 @@ name: Deploy VitePress Docs to GitHub Pages
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
-
+concurrency:
+  group: pages
+  cancel-in-progress: false
 jobs:
-  deploy:
+  # 构建工作
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-<<<<<<< Updated upstream
-          fetch-depth: 0
-
-      - name: Setup Node.js
-=======
           fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
       # - uses: pnpm/action-setup@v3 # 如果使用 pnpm，请取消此区域注释
-      #   with: 
+      #   with:
       #     version: 9
       # - uses: oven-sh/setup-bun@v1 # 如果使用 Bun，请取消注释
       - name: Setup Node
->>>>>>> Stashed changes
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: 'server2mcp-docs/package-lock.json'
-
-      - name: Install Dependencies
-        run: npm install
-        working-directory: ./server2mcp-docs # 指定此步骤的工作目录
-
-      - name: Build
-        run: npm run docs:build
-        working-directory: ./server2mcp-docs # 指定此步骤的工作目录
-
-      - name: Setup GitHub Pages
+          node-version: 22
+          cache: npm # 或 pnpm / yarn
+      - name: Setup Pages
         uses: actions/configure-pages@v4
-
+      - name: Install dependencies
+        run: npm ci # 或 pnpm install / yarn install / bun install
+      - name: Build with VitePress
+        run: npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # 从 server2mcp-docs 内部的构建输出目录上传
-          path: server2mcp-docs/.vitepress/dist
+          path: .vitepress/dist
 
+  # 部署工作
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
