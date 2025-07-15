@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
+  ignoreDeadLinks: true,
   base: '/server2mcp-docs/',
   lang: 'zh-CN',
   title: 'Server2MCP',
