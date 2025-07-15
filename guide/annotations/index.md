@@ -22,9 +22,8 @@ title: 注解概览
 - **[上下文注入](./context-injection)**  
   讲解 `@McpTool` 的高级用法，例如如何自动注入 `McpLogger` 以实现与客户端的实时通信。
 
-- **[自动完成](./completion)**  
+- **[自动补全](./completion)**  
   关于 `@McpComplete` 注解的详细说明，用于为资源和提示词提供动态输入建议。
 
-- **[回调与消费](./callbacks)**  
-  关于 `@McpSampling` 等注解的详细说明，用于处理来自 MCP 客户端的事件请求。
+- **[回调与消费](./callbacks.md)**：学习如何使用 `@McpLoggingConsumer` 等注解来消费和处理来自客户端的事件。
 

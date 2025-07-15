@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /guide/quickstart
+      link: /guide
     - theme: alt
       text: 查看 GitHub
       link: https://github.com/TheEterna/server2mcp
