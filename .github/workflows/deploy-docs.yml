@@ -36,7 +36,6 @@ jobs:
 
       - name: Verify VitePress Installation
         run: |
-          npx --no-install vitepress --version  # 验证 VitePress 版本
           chmod +x node_modules/.bin/vitepress  # 确保命令可执行
 
       - name: Build
