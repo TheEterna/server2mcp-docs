@@ -3,9 +3,6 @@ name: Deploy VitePress Docs to GitHub Pages
 on:
   push:
     branches: [main]
-    paths: # 仅在 docs 目录或此工作流文件变更时触发
-      - 'server2mcp-docs/**'
-      - '.github/workflows/deploy-docs.yml'
 
 permissions:
   contents: read
