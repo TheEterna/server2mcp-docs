@@ -29,26 +29,35 @@ jobs:
           node-version: '20'
           cache: 'npm'
 
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
       - name: Install Dependencies
         run: |
-          npm install  # 使用 npm install 确保依赖完整安装
-          npm rebuild  # 重建可能损坏的依赖
+          npm ci  # 使用 npm install 确保依赖完整安装
 
       - name: Verify VitePress Installation
         run: |
           chmod +x node_modules/.bin/vitepress  # 确保命令可执行
 
       - name: Build
-        run: npx vitepress build  # 明确使用 npx 执行命令
+        run: npm run docs:build # 明确使用 npx 执行命令
 
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
+      
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .vitepress/dist  # 确认构建输出路径
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
