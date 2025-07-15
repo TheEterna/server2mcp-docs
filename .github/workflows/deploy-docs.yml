@@ -9,11 +9,12 @@ permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: false
+
 jobs:
-  # 构建工作
   build:
     runs-on: ubuntu-latest
     steps:
@@ -29,10 +30,17 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          npm install  # 使用 npm install 确保依赖完整安装
+          npm rebuild  # 重建可能损坏的依赖
+
+      - name: Verify VitePress Installation
+        run: |
+          npx --no-install vitepress --version  # 验证 VitePress 版本
+          chmod +x node_modules/.bin/vitepress  # 确保命令可执行
 
       - name: Build
-        run: npx vitepress build
+        run: npx vitepress build  # 明确使用 npx 执行命令
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
@@ -40,8 +48,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .vitepress/dist
+          path: .vitepress/dist  # 确认构建输出路径
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
