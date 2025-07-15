@@ -1,7 +1,7 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  base: '/server2mcp/',
+  base: '/server2mcp-docs/',
   lang: 'zh-CN',
   title: 'Server2MCP',
   description: '基于 Spring Boot 的 MCP 服务自动集成框架',

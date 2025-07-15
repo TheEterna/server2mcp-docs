@@ -1,0 +1,50 @@
+name: Deploy VitePress Docs to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: # 仅在 docs 目录或此工作流文件变更时触发
+      - 'server2mcp-docs/**'
+      - '.github/workflows/deploy-docs.yml'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'server2mcp-docs/package-lock.json'
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./server2mcp-docs # 指定此步骤的工作目录
+
+      - name: Build
+        run: npm run docs:build
+        working-directory: ./server2mcp-docs # 指定此步骤的工作目录
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # 从 server2mcp-docs 内部的构建输出目录上传
+          path: server2mcp-docs/.vitepress/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
