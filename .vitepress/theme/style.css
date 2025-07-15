@@ -1,0 +1,169 @@
+/* Elegant technical theme for Server2MCP Docs */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Merriweather:wght@700&display=swap');
+
+:root {
+  /* Brand & Primary */
+  --vp-c-brand-1: #32b67a; /* 典雅盈翠（主色） */
+  --vp-c-brand-2: #259b68;
+  --vp-c-brand-3: #6ad6a7;
+  --vp-c-brand-4: #62bfad; /* Swan Dive - 青绿 */
+  --vp-c-brand-5: #167C80; /* Mr. Business - 深青 */
+
+  /* Accent & Highlight */
+  --vp-c-accent-1: #fdf06f; /* 理想之光（高亮） */
+  --vp-c-accent-2: #F9F8E6; /* Riviera - 柔和米色 */
+  --vp-c-accent-3: #F03F35; /* Brave Stranger - 活力红 */
+  --vp-c-accent-4: #FF8B8B; /* Bloodsmoke - 粉红高亮 */
+  --vp-c-accent-5: #F0CF61; /* Golden Afternoon - 金黄 */
+
+  /* Info & Utility */
+  --vp-c-info-1: #0c485e;  /* 深海蓝 */
+  --vp-c-info-2: #61BFAD;  /* Radio Silence - 青蓝 */
+  --vp-c-info-3: #005397;  /* Le Carnaval - 深蓝 */
+  --vp-c-info-4: #A6CFE2;  /* Brain Waves - 浅蓝 */
+  --vp-c-info-5: #0BBCD6;  /* Favorite Bodega - 明亮蓝 */
+
+  /* Success & Warning & Error */
+  --vp-c-success-1: #32B67A; /* 主绿色 */
+  --vp-c-success-2: #B7E3E4; /* Brave Stranger - 浅青 */
+  --vp-c-warning-1: #FDF06F; /* Cruller Intentions - 明黄 */
+  --vp-c-warning-2: #F0CF61; /* Golden Afternoon - 柔黄 */
+  --vp-c-error-1: #E54B4B;  /* Corrupted Monk - 鲜红 */
+  --vp-c-error-2: #F03F35;  /* Brave Stranger - 活力红 */
+
+  /* Background & Surface */
+  --vp-c-bg: #f8fcfb;       /* 雾白底色 */
+  --vp-c-bg-soft: #eef8f6;
+  --vp-c-bg-card: #F9F7E8;  /* Swan Dive - 卡片背景 */
+  --vp-c-bg-elv: #ffe9f4;
+  --vp-c-bg-alt: #eef8f6;   /* Laundry Service - 粉紫卡片 */
+  --vp-c-bg-gradient: linear-gradient(120deg, #f8fcfb 0%, #b7e3e4 100%);
+
+  /* Typography */
+  --vp-font-family-base: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --vp-font-family-heading: 'Merriweather', Georgia, serif;
+  --vp-c-text-main: #222;
+  --vp-c-text-soft: #666;
+  --vp-c-text-invert: #fff;
+
+  /* Code & Block */
+  --vp-c-code-bg: #272c34;
+  --vp-c-code-text: #eaeef3;
+  --vp-c-code-accent: #FEDAC2; /* Swift Kiss - 柔橙 */
+
+  /* Special/Extra */
+  --vp-c-hero-gradient: linear-gradient(120deg, #32b67a 0%, #61BFAD 100%);
+  --vp-c-hero-name: #FF8B8B; /* 主页大标题渐变色可用 */
+  --vp-c-hero-name-bg: -webkit-linear-gradient(120deg, #FF8B8B, #32b67a, #FDF06F);
+}
+html.dark {
+  --vp-c-bg: #393f3f;
+  --vp-c-bg-soft: #172020;
+  --vp-c-bg-card: #242a2e;
+  --vp-c-bg-elv: #9e9184a6;
+  --vp-sidebar-bg-color: #383838;
+  --vp-c-bg-alt: #2e2e2e;
+  --vp-c-brand-1: #4fd1a5;
+  --vp-c-brand-2: #2fa885;
+  --vp-c-brand-4: #62bfad;
+  --vp-c-brand-5: #167C80;
+  --vp-c-accent-1: #f4e85c;
+  --vp-c-accent-2: #2D1FE8;
+  --vp-c-accent-3: #FF4552;
+  --vp-c-accent-4: #FF8B8B;
+  --vp-c-accent-5: #F0CF61;
+  --vp-c-info-1: #88b6c7;
+  --vp-c-info-2: #61BFAD;
+  --vp-c-info-3: #005397;
+  --vp-c-info-4: #A6CFE2;
+  --vp-c-info-5: #0BBCD6;
+  --vp-c-success-1: #4fd1a5;
+  --vp-c-success-2: #B7E3E4;
+  --vp-c-warning-1: #FDF06F;
+  --vp-c-warning-2: #F0CF61;
+  --vp-c-error-1: #E54B4B;
+  --vp-c-error-2: #F03F35;
+  --vp-c-text-main: #eaeef3;
+  --vp-c-text-soft: #b7b7b7;
+  --vp-c-text-invert: #222;
+  --vp-c-code-bg: #23272e;
+  --vp-c-code-text: #f8fcfb;
+  --vp-c-code-accent: #FEDAC2;
+  --vp-c-hero-gradient: linear-gradient(120deg, #4fd1a5 0%, #61BFAD 100%);
+  --vp-c-hero-name: #FF8B8B;
+  --vp-c-hero-name-bg: -webkit-linear-gradient(120deg, #FF8B8B, #4fd1a5, #f4e85c);
+}
+
+/* Heading tweaks */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--vp-font-family-heading);
+  font-weight: 700;
+}
+
+/* Code block styling */
+.vp-doc pre {
+  border-radius: 6px;
+  background-color: var(--vp-c-bg-soft);
+}
+
+/* Hero background gradient */
+.VPHomeHero {
+  background: linear-gradient(120deg, var(--vp-c-bg) 0%, rgba(50, 182, 122, 0.08) 100%);
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* Feature card */
+.VPHomeFeatures .item {
+  border: 1px solid var(--vp-c-bg-soft);
+  border-radius: 12px;
+  padding: 1.2rem 1rem;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(4px);
+  transition: box-shadow .25s ease;
+}
+.VPHomeFeatures .item:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Code block tweak */
+.vp-doc pre {
+  background: #272c34;
+  color: #eaeef3;
+}
+
+/* Navbar height & shadow subtle */
+.VPNav {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+}
+
+/* Link underline on hover for better usability */
+.vp-doc a:hover {
+  text-decoration: underline;
+} 
+
+/* Breathing animation */
+@keyframes breathe {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.VPHomeHero {
+  background-size: 200% 200%;
+  animation: breathe 12s ease infinite;
+}
+
+/* Feature icon circle */
+.VPHomeFeatures .item .icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-3);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 0.5rem;
+} 
