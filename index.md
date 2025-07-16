@@ -43,7 +43,7 @@ footer: MIT Licensed | © 2025 Han
 # 1️⃣  添加依赖（Maven）
 <dependency>
   <groupId>com.ai</groupId>
-  <artifactId>server2mcp-starter</artifactId>
+  <artifactId>server2mcp-starter-webmvc</artifactId>
   <version>1.0.0</version>
 </dependency>
 
@@ -53,8 +53,10 @@ plugin:
     enabled: true
 
 # 3️⃣  编写工具
-@Component
+@Controller
 public class Calculator {
+
+  @PostMapping("add")
   @McpTool(name = "add", description = "计算两数之和")
   public int add(int a, int b) {
     return a + b;
